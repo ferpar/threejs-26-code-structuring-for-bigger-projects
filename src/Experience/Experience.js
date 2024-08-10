@@ -1,10 +1,19 @@
+import * as THREE from "three";
 import Sizes from "./Utils/Sizes.js";
 import Time from "./Utils/Time.js";
+import Camera from "./Camera.js";
+import Renderer from "./Renderer.js"
 
+let instance = null;
 export default class Experience {
   constructor(canvas) {
-    // Global Access
-    window.experience = this;
+    // Singleton, return the instance if it already exists
+    if (instance) {
+      return instance;
+    }
+    instance = this;
+    // // Global Access
+    // window.experience = this;
 
     // Options
     this.canvas = canvas;
@@ -12,6 +21,9 @@ export default class Experience {
     // Setup
     this.sizes = new Sizes();
     this.time = new Time();
+    this.scene = new THREE.Scene();
+    this.camera = new Camera();
+    this.renderer = new Renderer();
 
     // resize event of sizes instance (triggered by window resize)
     this.sizes.on("resize", () => {
@@ -26,9 +38,13 @@ export default class Experience {
 
   resize() {
     console.log("resizing");
+    this.camera.resize()
+    this.renderer.resize()
   }
 
   update() {
     console.log("update the experience");
+    this.camera.update()
+    this.renderer.update()
   }
 }
