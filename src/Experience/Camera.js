@@ -11,7 +11,6 @@ export  default class Camera {
 
     this.setInstance()
     this.setOrbitControls()
-    console.log("Camera created")
   }
 
   setInstance() {
@@ -26,7 +25,6 @@ export  default class Camera {
   }
 
   setOrbitControls() {
-    console.log("domElement @ OrbitControls", this.canvas)
     this.controls = new OrbitControls(this.instance, this.canvas)
     this.controls.enableDamping = true
 

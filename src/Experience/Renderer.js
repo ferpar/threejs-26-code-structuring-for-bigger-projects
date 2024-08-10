@@ -9,7 +9,6 @@ export default class Renderer {
     this.scene = this.experience.scene;
     this.camera = this.experience.camera;
     this.setInstance()
-    console.log(" all good ?")
   }
 
   setInstance() {
